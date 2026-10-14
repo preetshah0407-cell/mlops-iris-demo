@@ -26,7 +26,7 @@ pipeline {
                     set -e
                     .venv/bin/python retrain.py
                     test -s iris_model.pkl
-                    echo "Model training and validation successful."
+                    echo "Model training successful."
                 '''
             }
         }
@@ -38,7 +38,6 @@ pipeline {
                     sudo install -o preetshah0407 -g preetshah0407 \
                         -m 644 iris_model.pkl \
                         /home/preetshah0407/app/iris_model.pkl
-
                     test -s /home/preetshah0407/app/iris_model.pkl
                     echo "Model deployment successful."
                 '''
@@ -48,10 +47,10 @@ pipeline {
 
     post {
         success {
-            echo 'SUCCESS: Model retrained, verified, and deployed.'
+            echo 'Model retrained and deployed successfully.'
         }
         failure {
-            echo 'FAILURE: Check Console Output for the exact error.'
+            echo 'Pipeline failed. Check Console Output.'
         }
     }
 }
